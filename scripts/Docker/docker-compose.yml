@@ -1,0 +1,54 @@
+version: '3.7'
+
+networks:
+  web-network:
+    driver: bridge
+  app-network:
+    driver: bridge
+
+services:
+  couchbase-server:
+    build:
+      context: ./couchbase-server
+      dockerfile: Dockerfile
+    tty: true
+    restart: unless-stopped
+    # only open to app network in production but in development we forward
+    # these ports to the Docker host (your local machine typically)
+    ports:
+      - "8091-8096:8091-8096"
+      - "9140:9140"
+      - "11210:11210"
+      - "11211:11211"
+    networks:
+      - app-network
+    environment:
+      - COUCHBASE_ADMINISTRATOR_USERNAME
+      - COUCHBASE_ADMINISTRATOR_PASSWORD
+      - COUCHBASE_BUCKET
+
+  php-fpm:
+    build:
+      context: ./php-fpm
+      dockerfile: Dockerfile
+    tty: true
+    volumes:
+      - ../../:/var/www/html
+    restart: unless-stopped
+    networks:
+      - web-network
+      - app-network
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    tty: true
+    restart: unless-stopped
+    ports:
+      - "9090:80"
+    networks:
+      - web-network
+    volumes:
+      - ../../:/var/www/html
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro

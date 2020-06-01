@@ -1,10 +1,10 @@
-## About Laravel Couchbase Sample
+## About Laravel Couchbase Demo
 
-Laravel Couchbase Sample is a Laravel application used to demonstrate using Laravel with Couchbase Server.
+Laravel Couchbase Demo is a Laravel application used to demonstrate using Laravel with Couchbase Server.
 
 ## Installation
 
-This sample application uses Docker Desktop on Mac or Windows. Follow these steps to get up and running.
+This demo application uses Docker Desktop on Mac or Windows. Follow these steps to get up and running.
 
 Commands below should be run from the project root directory. Run them in Terminal, CMD.exe or Powershell.
 
@@ -29,6 +29,9 @@ Commands below should be run from the project root directory. Run them in Termin
     ```
     docker-compose logs -f
     ```
+   
+   Use `CTRL+C` to stop tailing the logs. To continue with the instructions, you can either stop tailing the logs OR open a second command prompt and `cd` to the same location.
+   
 7. Connect to the `php-fpm` Docker container.
     ```
     docker-compose exec php-fpm bash
@@ -48,6 +51,17 @@ Commands below should be run from the project root directory. Run them in Termin
     * http://localhost:9090 (Demo App)
 
 You can edit project files and they will be reflected live in the Docker container using the magic of [Docker Volumes](https://docs.docker.com/compose/compose-file/#volume-configuration-reference).
+
+## Uninstall
+
+To stop the Docker containers and delete the built images, from the project root directory, run these commands:
+
+```
+cd ./scripts/Docker
+docker-compose down --rmi 'all'
+```
+
+At this point, you can delete the project directory and there should be no artifacts of the project on your system. If you installed Docker Desktop just for this demo, please refer to their documentation for uninstall instructions.
 
 ## Contributing
 

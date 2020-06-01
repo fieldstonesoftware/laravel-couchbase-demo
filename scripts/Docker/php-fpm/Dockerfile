@@ -27,12 +27,6 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh \
     && rm nodesource_setup.sh \
     && apt-get install -y nodejs
 
-# Install Laravel Installer
-RUN composer global require laravel/installer
-
-# Add the composer vendor/bin directory to the PATH
-ENV PATH="/root/.composer/vendor/bin:${PATH}"
-
 WORKDIR /var/www/html
 
 # Copy configuration files

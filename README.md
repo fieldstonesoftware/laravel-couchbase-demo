@@ -1,78 +1,58 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+## About Laravel Couchbase Sample
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Laravel Couchbase Sample is a Laravel application used to demonstrate using Laravel with Couchbase Server.
 
-## About Laravel
+## Installation
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This sample application uses Docker Desktop on Mac or Windows. Follow these steps to get up and running.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Commands below should be run from the project root directory. Run them in Terminal, CMD.exe or Powershell.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. Clone this repository.
+2. Ensure [Docker Desktop](https://www.docker.com/products/docker-desktop) is running.
+3. Create the `docker-compose` environment file.
+    ```
+    cd ./scripts/Docker
+    cp dev.env .env
+    ```
+   If you modify the *.env* file, you also have to modify the Laravel .env file to use the same username, password and bucket name in the demo. We recommend you try the demo first with the defaults in place then modify them in the future if desired. DO NOT use the defaults in a production environment.
+4. Build the Docker Images
+    ```
+    cd ./scripts/Docker
+    docker-compose build
+    ```
+5. Start the Docker Containers
+    ```
+    docker-compose up -d
+    ```
+6. Tail the Docker Logs
+    ```
+    docker-compose logs -f
+    ```
+7. Connect to the `php-fpm` Docker container.
+    ```
+    docker-compose exec php-fpm bash
+    ```
+8. Install `composer` and `npm` dependencies in the project.
+    ```
+    composer install
+    npm install
+    npm run dev
+    ```
+9. Copy the `.env.example` to `.env`. If you modified the Docker .env file above, also modify the values in this file to match.
+    ```
+    cp .env.example .env
+    ```
+10. The demo should now work. Access it:
+    * http://localhost:8091 (Couchbase Server - Login with admin/secret1234 by default)
+    * http://localhost:9090 (Demo App)
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+You can edit project files and they will be reflected live in the Docker container using the magic of [Docker Volumes](https://docs.docker.com/compose/compose-file/#volume-configuration-reference).
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Thank you for considering contributing to the Laravel Couchbase Sample! To keep this as simple as possible, please follow the Laravel contribution guide that can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The Laravel Couchbase Sample is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

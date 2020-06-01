@@ -19,5 +19,5 @@ Route::get('/', function () {
 
 Route::get('cb_connect', function(){
     $result = DB::select('select * from system:keyspaces');
-    dd($result);
+    return $result;
 });

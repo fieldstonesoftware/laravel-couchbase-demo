@@ -13,4 +13,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Single route
 Route::name('welcome')->get('/', 'PagesController@welcome');
+
+// Multiple routes: index, store, show, update, destroy, edit
+Route::resource('orders', 'OrdersController');
+

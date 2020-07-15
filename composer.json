@@ -10,11 +10,12 @@
     "require": {
         "php": "^7.2",
         "ext-couchbase": "^2.6",
-        "ext-json": "^1.7",
+        "ext-json": "*",
         "fideloper/proxy": "^4.0",
-        "fieldstone/laravel-couchbase": "^0.6.5",
+        "fieldstone/laravel-couchbase": "^0.6.7",
         "laravel/framework": "^6.0",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "laravelcollective/html": "^6.1"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
@@ -40,6 +41,9 @@
         "classmap": [
             "database/seeds",
             "database/factories"
+        ],
+        "files": [
+            "app/Http/helpers.php"
         ]
     },
     "autoload-dev": {

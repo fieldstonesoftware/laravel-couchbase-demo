@@ -6,8 +6,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="{!! route('welcome') !!}">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item {!! request()->route()->getName() === 'welcome' ? 'active' : '' !!}">
+                <a class="nav-link" href="{!! route('welcome') !!}">Home</a>
+            </li>
+            <li class="nav-item {!! request()->route()->getName() === 'orders.index' ? 'active' : '' !!}">
+                <a class="nav-link" href="{!! route('orders.index') !!}">Orders</a>
             </li>
         </ul>
 {{--        <form class="form-inline mt-2 mt-md-0">--}}

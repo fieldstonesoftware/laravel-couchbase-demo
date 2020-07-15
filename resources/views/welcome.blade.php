@@ -13,7 +13,8 @@
                 <h5>Buckets</h5>
                 <ul style="list-style:none;">
                     @foreach($systemKeyspaces as $keyspace)
-                        <li><b>Name:</b> {!! $keyspace['keyspaces']['name'] !!} <b>Datastore ID:</b> {!! $keyspace['keyspaces']['datastore_id'] !!}</li>
+                        <li><b>Name:</b> {!! $keyspace['keyspaces']['name'] !!}
+                            <b>Datastore ID:</b> <a target="_blank" href="{!! $keyspace['keyspaces']['datastore_id'] !!}">{!! $keyspace['keyspaces']['datastore_id'] !!}</a></li>
                     @endforeach
                 </ul>
             </div>

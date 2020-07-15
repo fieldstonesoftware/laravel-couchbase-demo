@@ -22,4 +22,12 @@
         <p>Delivered {{ $order->dt_order_delivered->toDayDateTimeString() }} UTC</p>
     @endif
 
+    <div class="my-4">
+        {!! Form::open(['method'=>'DELETE'
+            ,'route'=>['orders.destroy',$order->_id]
+            ,'onsubmit'=>'return confirm("Click OK to delete this Order")']) !!}
+        {!! Form::submit('Delete Order', ['class'=>'btn btn-danger']) !!}
+        {!! Form::close() !!}
+    </div>
+
 @endsection

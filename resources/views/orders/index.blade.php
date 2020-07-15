@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    <p>This is for the purpose of demonstrating basic CRUD functionality.</p>
 
     {!! Form::open(['method'=>'POST','route'=>'orders.store','class'=>"mt-3"]) !!}
     <h3>Create New Order</h3>

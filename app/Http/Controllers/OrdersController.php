@@ -8,6 +8,7 @@ use App\Models\Order;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 
 class OrdersController extends Controller
@@ -83,11 +84,21 @@ class OrdersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Order $order
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Request $request, Order $order)
     {
-        //
+        try {
+            $order->delete();
+            flashSUCCESS('Order Deleted!');
+        } catch (\Exception $e) {
+            Log::error('Delete order failed with exception: '.$e->getMessage());
+            Log::error($e->getTraceAsString());
+            flashERR('Problem deleting order: '.$e->getMessage());
+        }
+
+        return redirect()->route('orders.index');
     }
 }

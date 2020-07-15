@@ -1,0 +1,1 @@
+<p>Find this project on <a target="_blank" href="https://github.com/fieldstonesoftware/laravel-couchbase-demo">GitHub</a></p>

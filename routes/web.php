@@ -11,13 +11,6 @@
 |
 */
 
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('cb_connect', function(){
-    $result = DB::select('select * from system:keyspaces');
-    return $result;
-});
+Route::name('welcome')->get('/', 'PagesController@welcome');

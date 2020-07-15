@@ -1,112 +1,38 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
+@section('content')
+    <div class="jumbotron">
+        <h1 class="display-4">Laravel Couchbase Demo</h1>
+        <p class="lead">Want to use Couchbase with Laravel? This project demonstrates an approach to getting it done.</p>
+        <hr class="my-4">
+        <p>This project is open source. Find it on GitHub.</p>
+        <a class="btn btn-primary btn-lg" href="https://github.com/fieldstonesoftware/laravel-couchbase-demo" role="button">GitHub</a>
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            ul.contributors {
-                list-style-type:none;
-            }
-
-            ul.contributors li {
-                font-size:24px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel Couchbase Demo
-                </div>
-                <div class="links">
-                    <a target="_blank" href="https://www.couchbase.com/">Couchbase</a>
-                    <a target="_blank" href="https://laravel.com/">Laravel</a>
-                    <a target="_blank" href="https://github.com/fieldstonesoftware/laravel-couchbase">Laravel Couchbase Extension</a>
-                </div>
-
-                <h2 style="margin-top:100px;">Demo Page Links</h2>
-                <ol class="demo-links" style="list-style:none;">
-                    <li><a href="/cb_connect">Connection Test</a></li>
-                </ol>
-
-                <h2 style="margin-top:180px;">Contributors</h2>
-                <ul class="contributors">
-                    <li>JR Lawhorne <i>jr@fieldstone.io</i></li>
+        @if(null !== $systemKeyspaces)
+            <div class="alert alert-success my-3 text-center">
+                <p>Connected to Couchbase Successfully!</p>
+                <h5>Buckets</h5>
+                <ul style="list-style:none;">
+                    @foreach($systemKeyspaces as $keyspace)
+                        <li><b>Name:</b> {!! $keyspace['keyspaces']['name'] !!} <b>Datastore ID:</b> {!! $keyspace['keyspaces']['datastore_id'] !!}</li>
+                    @endforeach
                 </ul>
             </div>
-        </div>
-    </body>
-</html>
+        @else
+            <p class="alert alert-danger my-3 text-center">Could NOT connect to Couchbase!</p>
+        @endif
+    </div>
+
+    <h2 class="text-center">External Resources</h2>
+    <div class="d-flex justify-content-center">
+        <a class="d-inline-block ml-3" target="_blank" href="https://www.couchbase.com/">Couchbase</a>
+        <a class="d-inline-block ml-3" target="_blank" href="https://laravel.com/">Laravel</a>
+        <a class="d-inline-block ml-3" target="_blank" href="https://github.com/fieldstonesoftware/laravel-couchbase">Laravel Couchbase Extension</a>
+        <a class="d-inline-block ml-3" target="_blank" href="https://getbootstrap.com/">Bootstrap (optional)</a>
+    </div>
+
+    <h2 class="text-center mt-4">Contributors</h2>
+    <div class="d-flex justify-content-center">
+        <span class="d-inline-block ml-3">JR Lawhorne <i>jr@fieldstone.io</i></span>
+    </div>
+    <p class="text-center"><a target="_blank" href="https://github.com/fieldstonesoftware/laravel-couchbase-demo">See GitHub</a> for a full list of contributors.</p>
+@endsection

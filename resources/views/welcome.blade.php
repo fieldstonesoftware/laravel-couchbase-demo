@@ -23,6 +23,10 @@
         @endif
     </div>
 
+    <h2 class="text-center">Getting Started</h2>
+    <p>If you are successfully connecting to the Couchbase server (see above), click <a href="{!! route('orders.index') !!}">Orders</a>
+        on the menu and start playing. Use the Couchbase Server UI to watch documents get created, change and get deleted.</p>
+
     <h2 class="text-center">External Resources</h2>
     <div class="d-flex justify-content-center">
         <a class="d-inline-block ml-3" target="_blank" href="https://www.couchbase.com/">Couchbase</a>
